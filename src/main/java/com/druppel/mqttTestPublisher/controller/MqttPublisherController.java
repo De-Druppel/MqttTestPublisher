@@ -33,7 +33,7 @@ public class MqttPublisherController {
                 if (DEBUG) {
                     System.out.println("Publishing to MQTT broker: " + payload + " at timestamp: " + new Date());
                 }
-                mqttMessageProducer.sendToMqtt(properties.getProperty(payload));
+                mqttMessageProducer.sendToMqtt(payload);
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
