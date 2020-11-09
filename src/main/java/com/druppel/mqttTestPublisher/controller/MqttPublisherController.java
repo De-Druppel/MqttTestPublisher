@@ -27,12 +27,13 @@ public class MqttPublisherController {
 
     public void startMqttTestPublisher() {
         Properties properties = context.getBean("properties", Properties.class);
+        String payload = properties.getProperty("MESSAGE_PAYLOAD");
         while(true) {
             try {
                 if (DEBUG) {
-                    System.out.println("Publishing to MQTT broker: " + properties.getProperty("MESSAGE_PAYLOAD") + " at timestamp: " + new Date());
+                    System.out.println("Publishing to MQTT broker: " + payload + " at timestamp: " + new Date());
                 }
-                mqttMessageProducer.sendToMqtt(properties.getProperty("MESSAGE_PAYLOAD"));
+                mqttMessageProducer.sendToMqtt(payload);
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
